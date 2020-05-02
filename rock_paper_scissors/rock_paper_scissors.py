@@ -2,9 +2,9 @@ import random
 import tkinter as tk  
 from playsound import playsound
 
-WIDTH = 500
-HEIGHT = 250
-TITLE = "Rock Paper Scissors Game"
+WINDOW_WIDTH = 500
+WINDOW_HEIGHT = 250
+WINDOW_TITLE = "Rock Paper Scissors Game"
 BUTTON_CLICK_SOUND = "clicks.m4a"
 
 class RPS:
@@ -14,9 +14,9 @@ class RPS:
     def __init__(self):
         self.rps_options = ["rock", "paper", "scissors"]
         self.window = tk.Tk()
-        self.window.geometry("{}x{}".format(WIDTH, HEIGHT) )
+        self.window.geometry("{}x{}".format(WINDOW_WIDTH, WINDOW_HEIGHT) )
         self.window.configure(bg="#dfeaf4")
-        self.window.title(TITLE)
+        self.window.title(WINDOW_TITLE)
         self.text = tk.Text(master = self.window, height = 15, width = 40, bg = "#FFE4E1")
         self.text.grid(column=1,row=4)
         self.buttons()
@@ -85,15 +85,17 @@ class RPS:
 
         return
 
+
     # Function to create buttons and use the above commands
     def buttons(self):
         button1 = tk.Button(text="Rock" , width = 9, highlightbackground = "#8B3C9D", command = self.rock)
         button1.grid(column= 0,row=0, padx=10, pady=10)
+       
         button2 = tk.Button(text="Paper", width = 9, highlightbackground = "#FF4105", command = self.paper)
         button2.grid(column=1,row=0, padx=10, pady=10)
+
         button3 = tk.Button(text="Scissor", width = 9, highlightbackground = "#FEA636", command = self.scissor)
         button3.grid(column=2,row=0, padx=10, pady=10) 
-
 
         return
 
