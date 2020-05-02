@@ -53,7 +53,7 @@ class RPS:
             self.machine_score += 1
 
         
-        result = "Your Choice: {} \nMachines's Choice :{}\n{}\nYour Score :{}\nComputer Score :{} ".format(player_choice,
+        result = "Your Choice: {} \n\nMachines's Choice :{}\n\n{}\n\nYour Score :{}\n\nComputer Score :{} ".format(player_choice,
         machine_choice, winner_statement, self.player_score, self.machine_score)  
         self.text.delete("1.0", tk.END)  
         self.text.insert(tk.END, result)
