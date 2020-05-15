@@ -1,0 +1,4 @@
+<svg class="background">
+  <text id="myTimeLabel" />
+  <text id="myStepsLabel" />
+</svg>

@@ -1,0 +1,23 @@
+.background {
+  viewport-fill: purple;
+}
+
+#myTimeLabel {
+  font-size: 50;
+  font-family: System-Bold;
+  text-length: 32;
+  text-anchor: middle;
+  x: 50%;
+  y: 50%+10;
+  fill: white;
+}
+
+#myStepsLabel {
+  font-size: 20;
+  font-family: System-Bold;
+  text-length: 32;
+  text-anchor: middle;
+  x: 50%;
+  y: 50%+80;
+  fill: white;
+}
