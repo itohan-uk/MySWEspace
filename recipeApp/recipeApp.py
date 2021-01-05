@@ -8,7 +8,7 @@ import tkinter as tk
 import webbrowser
 
 
-BUTTON_CLICK_SOUND = "clicks.m4a"
+BUTTON_CLICK_SOUND = "../clicks.m4a"
 WINDOW_TITLE = "Recipe App"
 RECIPE_IMAGE_WIDTH = 350
 RECIPE_IMAGE_HEIGHT = 300
@@ -45,7 +45,6 @@ class RecipeApp(object):
         recipe = self.__get_recipe(query)
 
         if recipe:
-            ingredients = recipe.ingredient_names
             recipe_image = recipe.image
             recipe_url = recipe.url
         
@@ -53,10 +52,9 @@ class RecipeApp(object):
             # Recipe not found
             recipe_image = "https://www.mageworx.com/blog/wp-content/uploads/2012/06/Page-Not-Found-13.jpg"
             recipe_url = ""
-            ingredients = None
-        
+
         self.__show_image(recipe_image)
-        self.__get_ingredients(ingredients)
+        self.__get_ingredients(recipe)
 
         def __open_link():
             playsound(BUTTON_CLICK_SOUND)
@@ -77,6 +75,7 @@ class RecipeApp(object):
     
     def __show_image(self, image_url):
         response = requests.get(image_url)
+        
         img = Image.open(BytesIO(response.content))
         img = img.resize((RECIPE_IMAGE_WIDTH, RECIPE_IMAGE_HEIGHT))
         image = ImageTk.PhotoImage(img)
@@ -86,16 +85,17 @@ class RecipeApp(object):
         holder.grid(column=1, row=6, pady=10)
     
 
-    def __get_ingredients(self, recipe_ingredients):
+    def __get_ingredients(self, recipe):
         ingredients = tk.Text(master = self.window, height = 15, width = 50, bg = "#ffdada")
         ingredients.grid(column=1,row=4, pady = 10)
         ingredients.delete("1.0", tk.END)  
 
-        if recipe_ingredients == None :
+        if recipe == None :
             ingredients.insert(tk.END, "No Recipe found for search criteria")
             return
 
-        for ingredient in recipe_ingredients:
+        ingredients.insert(tk.END, "\n" + recipe.label + "\n")
+        for ingredient in recipe.ingredient_names:
             ingredients.insert(tk.END, "\n- " + ingredient)
 
     def run_app(self):
@@ -106,8 +106,8 @@ class RecipeApp(object):
 # Create App and run the app
 if __name__ == "__main__":
     #API Keys
-    APP_ID = "a81ef82f"
-    APP_KEY = "121c549eb20af942a2dea39c3d0aa505"
+    APP_ID = "" #Put your app id for edamam api
+    APP_KEY = "" #Put your app key for edamam api
 
     recipe_app = RecipeApp(APP_ID, APP_KEY)
     recipe_app.run_app()
