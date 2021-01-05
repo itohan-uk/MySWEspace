@@ -8,6 +8,9 @@ WINDOW_TITLE = "Youtube downloader"
 BUTTON_CLICK_SOUND = "clicks.m4a"
 
 class YoutubeDownloader:
+    '''
+    Class to create an app that downloads youtube videos
+    '''
 
     def __init__(self):
         self.window = tk.Tk()
@@ -39,6 +42,7 @@ class YoutubeDownloader:
 
 
     def __downloader(self, link, save_path = "", save_name = "", extension = "mp4"):
+        
         playsound(BUTTON_CLICK_SOUND)
         yt = YouTube(link) 
         yt_stream = yt.streams.filter(progressive=True, file_extension=extension).order_by('resolution').desc().first()
